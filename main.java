@@ -1,32 +1,28 @@
+ import java.util.*; 
 public class main{
     public static void main (String[]args){
         String s1 = args[0];
         String s2 = args[1];
 
-        
-        
-        boolean status = true;
+     boolean status = true;
 
-        if(s1.length() != s2.length()){
+      if(s1.length() != s2.length()){
         status = false;
-       }else{
+      }else if (s1.length()==0 && s2.length() == 0){
+           status = false;   
+      }else{
+        HashSet<Character> occur = new HashSet<Character>();   
         for (int x=0; x<s1.length(); x++){
             char c = s1.charAt(x);
-            int occurance = numOfOccurances(c,s1);
-            if(occurance > 1)
-            status = false;
+            if(occur.contains(c)){
+                status = false;
+            }else{
+                occur.add(c);
+            }
         }
+         occur.clear();
        }
         System.out.println(status);
-    }
+}
 
-    private static int numOfOccurances(char c, String s){
-        int count = 0;
-        for(int x=0; x<s.length(); x++){
-            char a = s.charAt(x);
-            if(a==c)
-            count++;
-        }
-        return count;
-    }
 }
